@@ -1,0 +1,48 @@
+docker build .
+docker build . -t logsapp #дает имя образу
+docker build . -t logsapp:exc"(version)"
+
+
+docker run -d -p 80:3000 4297ea1c32b1
+
+docker run -d -p 80:3000 --name logsapp 4297ea1c32b1
+docker run -d -p 80:3000 --name logsapp --rm 4297ea1c32b1 #rm удалит контейнер после остановки
+
+-d - detach - не забивать консоль процессом
+-p - выбор портов локальный:
+далее id image
+
+
+docker start (container) - detach mode 
+docker run (image)
+docker stop  4297ea1c32b1(container)
+
+
+docker ps  #запущенные образы
+docker ps -a   
+
+docker logs (container)
+docker attach (container)
+
+
+docker container prune - удаление контейнеров остановленных
+docker image prune - удаление image неиспользованных
+
+docker rm # Remove one or more containers
+docker rmi # Remove one or more images
+
+
+docker login -
+docker push cartoonandtravel/logsapp - выгрузка на docker hub
+docker pull cartoonandtravel/logsapp
+
+docker tag logsapp cartoonandtravel/logsapp - переименовать
+
+docker image inspect  logsapp
+
+
+docker run -d -p 80:4200 --env-file config/.env --rm --name logsapp logsapp
+
+docker run -d -p 80:4200 -v logs:/app/data --env-file config/.env --rm --name logsapp logsapp
+
+docker run -d -p 80:4200 -v "/app"-v logs:/app/data --env-file config/.env --rm --name logsapp logsapp
